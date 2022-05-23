@@ -1,0 +1,94 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial;
+  }
+  
+  .header {
+    text-align: center;
+    padding: 32px;
+  }
+  
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0 4px;
+  }
+  
+  /* Create four equal columns that sits next to each other */
+  .column {
+    flex: 25%;
+    max-width: 25%;
+    padding: 0 4px;
+  }
+  
+  .column img {
+    margin-top: 8px;
+    vertical-align: middle;
+  }
+  
+  /* Responsive layout - makes a two column-layout instead of four columns */
+  @media screen and (max-width: 800px) {
+    .column {
+      flex: 50%;
+      max-width: 50%;
+    }
+  }
+  
+  /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      flex: 100%;
+      max-width: 100%;
+    }
+  }
+.cell--3-RsZ {
+    flex-grow: 1;
+    flex-shrink: 1;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.result--27pi9 {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.proportional--rkHml {
+    height: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.proportionalInner--3jZf6 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.container--3NC_b {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+}
+
+.link--h3bPW {
+    display: block;
+    overflow: hidden;
+}
+
+a {
+    color: #00ab6b;
+    text-decoration: none;
+}
+
+.container--3NC_b img {
+    max-width: 100%;
+    max-height: 100%;
+    width: 100%;
+}
