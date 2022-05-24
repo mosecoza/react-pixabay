@@ -1,6 +1,6 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import helpers from "../../../utils/helpers";
-import {  IMagesInitialState } from "../../../utils/interfaces/images";
+import {  IMagesInitialState, IImages, TImages, IHit } from "../../../utils/interfaces/images";
 import {  getImagesAction } from "../actions/images";
 
 
@@ -48,11 +48,21 @@ const images = createSlice({
             state.loading = false;
             state.error = "Failed to load images"
         });
-        builder.addCase(getImagesAction.fulfilled, (state, { payload }) => {
+        builder.addCase(getImagesAction.fulfilled, (state, { payload }: PayloadAction< IImages>) => {
             state.loading = false;
             if (payload.hits) {
                 state.images = Object.assign(state.images,payload.hits);
-                state.imagesArray = helpers.partition(payload.hits, payload.hits.length /4)
+                if(state.imagesArray&&state.imagesArray?.length>1){
+                    
+                    let tmp = helpers.partition(payload.hits, payload.hits.length /4) 
+                    let temp = current(state.imagesArray) ;
+                     let newArray = temp.map((entry, i)=>[...entry, ...tmp[i]])
+                     console.log("newArray ", newArray);
+                     state.imagesArray = newArray
+                } else{
+
+                    state.imagesArray = helpers.partition(payload.hits, payload.hits.length /4)
+                }
             } else {
                 state.error = "Failed to load images"
             }

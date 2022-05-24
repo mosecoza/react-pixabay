@@ -16,9 +16,15 @@ const Home: FC<IHome> = ({
   clearSelectedImage,
 }) => {
   useEffect(() => {
-    getImagesAction();
+    getImagesAction(current);
     clearSelectedImage();
   }, []);
+
+  useEffect(() => {
+    getImagesAction(current);
+  }, [current]);
+
+  
 
   return (
     <div className="container-fluid p-4">
@@ -51,6 +57,7 @@ const Home: FC<IHome> = ({
     </div>
   );
 };
+
 const mapStateToProps = (state: any) => {
   return {
     imagesArray: state.images.imagesArray,
@@ -59,10 +66,11 @@ const mapStateToProps = (state: any) => {
     current: state.images.current,
   };
 };
+
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getImagesAction: () => {
-      dispatch(getImagesAction());
+    getImagesAction: (page:number) => {
+      dispatch(getImagesAction({page}));
     },
     clearSelectedImage: () => {
       dispatch(clearSelectedImage());
@@ -72,4 +80,5 @@ const mapDispatchToProps = (dispatch: any) => {
     },
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

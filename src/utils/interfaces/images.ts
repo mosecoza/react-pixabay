@@ -50,7 +50,7 @@ export interface IHome {
   loading: boolean,
   current: number,
   error:null|string,
-  getImagesAction: () => void
+  getImagesAction: (page:number) => void
   clearSelectedImage: () => void
   setCurrentPage: (page:number) => void
 
@@ -64,4 +64,8 @@ export interface IImageListCard {
 export interface IImageDetail {
   image: IHit;
   loading: boolean;
+}
+
+export interface IGetImagesAction{
+  page?:number
 }
