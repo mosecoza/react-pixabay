@@ -2,7 +2,10 @@ import React, { FC, Fragment, useEffect } from "react";
 
 import { getImagesAction } from "../../redux/images/actions/images";
 import { connect } from "react-redux";
-import { clearSelectedImage, setCurrentPage } from "../../redux/images/slices/images";
+import {
+  clearSelectedImage,
+  setCurrentPage,
+} from "../../redux/images/slices/images";
 import { IHome } from "../../utils/interfaces/images";
 import ImageListCard from "../../components/ImageListCard/ImageListCard";
 
@@ -16,19 +19,19 @@ const Home: FC<IHome> = ({
   clearSelectedImage,
 }) => {
   useEffect(() => {
-    getImagesAction(current);
+    if (!imagesArray) {
+      getImagesAction(current);
+    }
     clearSelectedImage();
   }, []);
 
-  useEffect(() => {
-    getImagesAction(current);
-  }, [current]);
-
-  
+  function handleMore() {
+    setCurrentPage(current + 1);
+    getImagesAction(current + 1);
+  }
 
   return (
     <div className="container-fluid p-4">
-
       <div className="row">
         {error ? (
           <div>
@@ -51,8 +54,20 @@ const Home: FC<IHome> = ({
           <div>Error Loading Content</div>
         )}
       </div>
-      <div className="w-100 d-flex justify-content-center align-items-center "> 
-      <button onClick={()=>setCurrentPage(current+1)} type="button" className="btn text-success btn-outline-success">Load more</button>
+      {imagesArray && loading ? (
+        <div className="d-flex justify-content-center">
+          <div className="spinner-border" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      ) : null}
+      <div className="w-100 d-flex justify-content-center align-items-center mt-4">
+        <span
+          onClick={handleMore}
+          className="btn text-success btn-outline-success"
+        >
+          Load more
+        </span>
       </div>
     </div>
   );
@@ -69,13 +84,13 @@ const mapStateToProps = (state: any) => {
 
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    getImagesAction: (page:number) => {
-      dispatch(getImagesAction({page}));
+    getImagesAction: (page: number) => {
+      dispatch(getImagesAction({ page }));
     },
     clearSelectedImage: () => {
       dispatch(clearSelectedImage());
     },
-    setCurrentPage: (page:number) => {
+    setCurrentPage: (page: number) => {
       dispatch(setCurrentPage(page));
     },
   };

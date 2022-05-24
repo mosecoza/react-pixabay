@@ -1,0 +1,78 @@
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  padding: 4px;
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  font-size: 0.8em;
+  flex-wrap: wrap-reverse;
+}
+
+/* When you mouse over the container, fade in the overlay title */
+.image-detail-card,
+.image-card:hover .overlay {
+  opacity: 1;
+}
+
+/* Container needed to position the overlay. Adjust the width as needed */
+.image-card {
+  position: relative;
+  width: 100%;
+  margin: 8px 2px;
+}
+/* Container needed to position the overlay. Adjust the width as needed */
+.image-detail-card {
+  position: relative;
+}
+
+/* Make the image to responsive */
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.interactions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.tags {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+
+.tag {
+  margin: 0px 2px;
+  cursor: pointer;
+}
+
+.tag:hover {
+  font-size: 1.1em;
+  background-color: #f6f3f38f;
+  padding: 1px 2px;
+}
+
+.image-icon:hover {
+  font-weight: 900;
+  color: antiquewhite;
+}
+.image-icon {
+  margin: 0px 1px;
+  color: #f1f1f1;
+}

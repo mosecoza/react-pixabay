@@ -55,7 +55,7 @@ const images = createSlice({
                 if(state.imagesArray&&state.imagesArray?.length>1){
                     
                     let tmp = helpers.partition(payload.hits, payload.hits.length /4) 
-                    let temp = current(state.imagesArray) ;
+                    let temp = state.imagesArray ;
                      let newArray = temp.map((entry, i)=>[...entry, ...tmp[i]])
                      console.log("newArray ", newArray);
                      state.imagesArray = newArray
